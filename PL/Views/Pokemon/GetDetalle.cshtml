@@ -1,0 +1,119 @@
+﻿@model ML.Detalle
+@{
+    ViewData["Title"] = "GetDetalle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <div align="right">
+        <a class="btn btn-info" href="@Url.Action("GetPokemon", "Pokemon")">Regresar</a>
+    </div>
+   <center>
+
+    <div class="container" style="border: ridge #0f0fef 5px; width:700px">
+        @using (Html.BeginForm("GetTipo", "Pokemon", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+        <div class="textbox">
+            <div class="textbox--border"></div>
+            <div>
+
+                <h1>@Model.name</h1>
+                <h5>Número: @Model.id</h5>
+                <div>
+                    <img src="@Model.Frontal" width:200px height:200px />
+                        <img src="@Model.Shiny" width:200px height:200px />
+                </div>
+                <h1>Tipo</h1>
+                
+                        @foreach (var tipo in Model.types)
+                        {
+                            @if (@tipo.type.name == "normal")
+                            {
+                            <input type="submit" value="@tipo.type.name" name="tipo" style="color: black;">
+                            }
+
+                            @if (@tipo.type.name == "grass")
+                            {
+
+                            <input type="submit" value="@tipo.type.name" name="tipo" style="color: green;">
+                               
+                            }
+                            @if (@tipo.type.name == "poison")
+                            {
+                                <h5 style="color: violet;">@tipo.type.name</h5>
+                            }
+                            @if (@tipo.type.name == "fighting")
+                            {
+                                <h5 style="color: orange;">@tipo.type.name</h5>
+                            }
+                            @if (@tipo.type.name == "flying")
+                            {
+                                <h5 style="color: aqua;">@tipo.type.name</h5>
+                            }@if (@tipo.type.name == "ground")
+                            {
+                                <h5 style="color: chocolate;">@tipo.type.name</h5>
+                            }
+                            @if (@tipo.type.name == "rock")
+                            {
+                                <h5 style="color: dimgrey;">@tipo.type.name</h5>
+                            }
+                            @if (@tipo.type.name == "bug")
+                            {
+                                <h5 style="color: brown;">@tipo.type.name</h5>
+                            }
+                            @if (@tipo.type.name == "ghost")
+                            {
+                                <h5 style="color:darkgray;">@tipo.type.name</h5>
+                            }
+                            @if (@tipo.type.name == "fire")
+                            {
+                                <h5 style="color:red;">@tipo.type.name</h5>
+                            }
+                            @if (@tipo.type.name == "steel")
+                            {
+                                <h5 style="color:lightslategray;">@tipo.type.name</h5>
+                            }
+                            @if (@tipo.type.name == "water")
+                            {
+                                <h5 style="color:forestgreen;">@tipo.type.name</h5>
+                            }
+                            @if (@tipo.type.name == "electric")
+                            {
+                                <h5 style="color:yellow;">@tipo.type.name</h5>
+                            }
+                            @if (@tipo.type.name == "psychic")
+                            {
+                                <h5 style="color:black;">@tipo.type.name</h5>
+                            }
+                            @if (@tipo.type.name == "ice")
+                            {
+                                <h5 style="color:cyan;">@tipo.type.name</h5>
+                            }
+                            @if (@tipo.type.name == "dragon")
+                            {
+                                <h5 style="color:orangered;">@tipo.type.name</h5>
+                            }
+                            @if (@tipo.type.name == "dark")
+                            {
+                                <h5 style="color:slategrey;">@tipo.type.name</h5>
+                            }
+                            @if (@tipo.type.name == "fairy")
+                            {
+                                <h5 style="color:pink;">@tipo.type.name</h5>
+                            }
+
+                        }
+                <div>
+                    <h1>Stats</h1>
+                    <blockquote>
+                        @foreach (var stats in Model.stats)
+                        {
+                            <h6>@stats.stat.name = @stats.base_stat</h6>
+                        }
+                    </blockquote>
+
+                </div>
+
+            </div>
+        </div>
+        }
+    </div>
+   </center>

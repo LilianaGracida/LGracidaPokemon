@@ -1,0 +1,79 @@
+﻿@model ML.Tipo
+@{
+    ViewData["Title"] = "GetTipo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>CodePen - Card Filter - Bootstrap 4</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <script type="module" src="script.js"></script>
+</head>
+
+<body>
+    <div class="container">
+       <center>
+            <h1>@Model.tipo</h1>
+           </center>
+        <div align="right">
+            <a class="btn btn-info" href="@Url.Action("GetPokemon", "Pokemon")">Regresar</a>
+        </div>
+
+
+
+        <div class="row" id="myItems">
+            @foreach (ML.Tipo pokemon in Model.results)
+            {
+                <div class="col mt-3 pt-3">
+                    <div class="card border-success mb-4 border-4" style="width: 12rem;">
+                        <div class="card-body">
+                            <h6 class="card-subtitle mb-2 text-muted"></h6>
+                            <p hidden class="card-text">@pokemon.url</p>
+                            <center>
+                                <img src="@pokemon.img" width:200px height:200px />
+                            </center>
+
+                            <h5 class="card-title text-center">@pokemon.name</h5>
+                            <center>
+                                <a class="btn btn-info" href="@Url.Action("GetDetalle", "Pokemon", new { url = pokemon.url })">Detalle</a>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>
+
+<script type="text/javascript">
+
+    function myFunction() {
+        var input, filter, cards, cardContainer, h5, title, i;
+        input = document.getElementById('myFilter');
+        filter = input.value.toUpperCase();
+        cardContainer = document.getElementById('myItems');
+        cards = cardContainer.getElementsByClassName('card');
+        Object.keys(cards).forEach((i) => {
+            cards[i].textContent.toUpperCase().includes(filter)
+                ? (cards[i].style.display = '')
+                : (cards[i].style.display = 'none');
+        });
+    }
+</script>
+
+
